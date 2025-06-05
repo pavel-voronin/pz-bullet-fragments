@@ -1,0 +1,3 @@
+Recipe_EN = {
+    Recipe_BulletFragmentsToBulletsScrap = "Combine into Bullets Scrap",
+}

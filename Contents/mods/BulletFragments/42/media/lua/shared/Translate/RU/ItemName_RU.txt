@@ -1,0 +1,4 @@
+ItemName_RU = {
+    ItemName_Base.Bullet_Fragments = "Осколки пули",
+    ItemName_Base.Bullets_Scrap = "Куча осколков",
+}

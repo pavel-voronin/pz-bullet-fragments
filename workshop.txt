@@ -1,0 +1,6 @@
+version=1
+id=3493708869
+title=Bullet Fragments
+description=Bullet fragments remain in zombie corpses. You can collect them — they act like scrap metal.
+tags=Build 42;Balance;Items;Realistic;Weapons
+visibility=public

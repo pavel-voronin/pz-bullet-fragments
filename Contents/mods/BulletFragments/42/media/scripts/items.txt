@@ -1,0 +1,56 @@
+module Base
+{
+    item Bullet_Fragments
+    {
+        DisplayName         = Bullet Fragments,
+        DisplayCategory     = Material,
+        Type                = Normal,
+        Weight              = 0.01,
+        Icon                = Bullet_Fragments,
+        MetalValue          = 3,
+        WorldStaticModel    = Bullet_Fragments_Ground,
+        Tags                = HasMetal,
+        ResearchableRecipes = BulletFragmentsToBulletsScrap,
+    }
+    
+    item Bullets_Scrap
+    {
+        DisplayName      = Bullets Scrap,
+        DisplayCategory  = Material,
+        Type             = Normal,
+        Weight           = 0.25,
+        Icon             = Bullets_Scrap,
+        MetalValue       = 30,
+        WorldStaticModel = Bullets_Scrap_Ground,
+        Tags             = HasMetal;SmeltableIronSmall,
+    }
+    
+    model Bullet_Fragments_Ground
+    {
+        mesh = WorldItems/MetalPieces,
+        texture = WorldItems/MetalPieces_Lead,
+        scale = 0.1,
+    }
+    
+    model Bullets_Scrap_Ground
+    {
+        mesh = WorldItems/ScrapMetal,
+        texture = WorldItems/Bullets_Scrap,
+        scale = 0.3,
+    }
+    
+    craftRecipe BulletFragmentsToBulletsScrap
+    {
+        timedAction = Making,
+        Time        = 15,
+        inputs
+        {
+            item 25 [Base.Bullet_Fragments],
+        }
+        outputs
+        {
+            item 1 Base.Bullets_Scrap,
+        }
+        Tags = InHandCraft;CanBeDoneInDark,
+    }
+}

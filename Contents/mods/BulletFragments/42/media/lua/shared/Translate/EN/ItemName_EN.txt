@@ -1,0 +1,4 @@
+ItemName_EN = {
+    ItemName_Base.Bullet_Fragments = "Bullet Fragments",
+    ItemName_Base.Bullets_Scrap = "Bullets Scrap",
+}
