@@ -17,12 +17,18 @@ local function getFragmentCount(weapon)
     return ZombRand(maxFragmentsCount) + 1
 end
 
-local function onHitZombie(zombie, wielder, bodyPartType, weapon)
-    if wielder:isDoHandToHandAttack() then
+local function onHitZombie(victim, abuser, bodyPartType, weapon)
+    -- IsoLivingCharacter aka player
+    if abuser.isDoHandToHandAttack and abuser:isDoHandToHandAttack() then
         return
     end
 
-    if not weapon:isRanged() then
+    if not weapon or not weapon:isRanged() then
+        return
+    end
+
+    -- weapon is fake (by Bandits mode), Base.Pistol is default fake weapon even if melee attack
+    if weapon:getFullType() == "Base.Pistol" and not instanceof(abuser, "IsoPlayer") then
         return
     end
 
@@ -30,8 +36,17 @@ local function onHitZombie(zombie, wielder, bodyPartType, weapon)
 
     for i = 1, fragmentCount do
         local fragmentItem = instanceItem("Base.Bullet_Fragments")
-        zombie:addItemToSpawnAtDeath(fragmentItem)
+
+        if victim:getVariableBoolean("Bandit") then
+            local inventory = victim:getInventory()
+            inventory:AddItem(fragmentItem)
+            Bandit.UpdateItemsToSpawnAtDeath(victim)
+        else
+            victim:addItemToSpawnAtDeath(fragmentItem)
+        end
+
     end
 end
 
+Events.OnHitZombie.Remove(onHitZombie)
 Events.OnHitZombie.Add(onHitZombie)
